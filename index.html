@@ -21,7 +21,8 @@
   p { margin:0 0 18px; }
   h2 { font-size:21px; margin:30px 0 10px; letter-spacing:-0.01em; }
   .card { margin:24px -22px; border:1px solid var(--rule); border-radius:10px; background:#fff;
-          padding:16px 22px 14px; font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif; }
+          padding:16px 22px 14px; font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+          scroll-margin-top:20px; }
   @media (max-width:720px){ .card{ margin:24px 0; padding:14px; } }
   .card h3 { margin:0 0 4px; font-size:16.5px; font-weight:700; }
   .cardsub { margin:0 0 12px; font-size:13.5px; color:var(--muted); line-height:1.45; }
@@ -70,7 +71,7 @@
 
 <p>Below is a quick experiment to see it. Imagine one college whose true retention rate is fixed at, say, 78 percent and never moves; the only thing that changes from year to year is the luck of the draw. Now simulate that one year over again, 20 times. Try it yourself:</p>
 
-<div class="card">
+<div class="card" id="sim-random-year">
   <h3>One year, twenty times</h3>
   <p class="cardsub">The true rate is exactly 78% every single time. Each dot is a reported rate for the identical year.</p>
   <div class="controls">
@@ -100,7 +101,7 @@
 
 <p>The simulation below follows a college whose true retention rate really is rising, a full percentage point a year, and shows what its reported number does anyway.</p>
 
-<div class="card">
+<div class="card" id="sim-improving-college">
   <h3>A college that is truly improving one point per year</h3>
   <p class="cardsub">Its true rate really is climbing&mdash;a full percentage point a year, from pure coin-flip dynamics alone. Move the slider to your class size; the simulation rolls 20 one-year changes at that improving college, each dot the change it actually reported.</p>
   <div class="controls">
