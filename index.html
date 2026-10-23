@@ -3,37 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Did Your Retention Rate Actually Improve or Decline This Year? You May Not Be Able to Tell.</title>
-<meta name="description" content="Statistics show that much of what moves a college’s retention rate each year isn’t effort or strategy. It’s luck, a roll of the dice. Two simulations, and how to read a single year honestly.">
+<title>Your Retention Rate Dropped. Or Did It?</title>
+<meta name="description" content="A single year’s retention rate can hide real progress or invent progress that isn’t there. Simulations show how long it takes to know whether a retention initiative worked.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@400;600;700&display=swap">
 <style>
-  :root { --ink:#1e222a; --muted:#5b6270; --accent:#1d4e89; --alert:#c0392b; --good:#1e7a4f; --rule:#d9dce2; --paper:#fdfdfc; }
+  :root { --ink:#141a18; --muted:#5b6270; --accent:#0e5546; --alert:#c0392b; --good:#1f8a70; --rule:#d9dce2; --paper:#ffffff; }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--paper); color:var(--ink);
-         font-family:Charter, Georgia, 'Times New Roman', serif; font-size:18.5px; line-height:1.64; }
+         font-family:'Source Serif 4', Charter, Georgia, 'Times New Roman', serif; font-size:18.5px; line-height:1.64; }
   article { max-width:650px; margin:0 auto; padding:44px 20px 70px; }
   h1 { font-size:32px; line-height:1.17; margin:0 0 12px; letter-spacing:-0.01em; }
   .subtitle { font-size:19.5px; line-height:1.4; color:var(--muted); margin:0 0 16px; font-style:italic; }
   .leadq { font-style:italic; font-size:21px; line-height:1.34; color:var(--accent); margin:2px 0 18px; }
-  .byline { font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif; font-size:13.5px;
+  .byline { border-top:2px solid #0e5546 !important; font-family:'Source Sans 3',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif; font-size:13.5px;
             color:var(--muted); text-transform:uppercase; letter-spacing:.08em;
             border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
             padding:9px 0; margin-bottom:26px; }
   p { margin:0 0 18px; }
-  h2 { font-size:21px; margin:30px 0 10px; letter-spacing:-0.01em; }
-  .card { margin:24px -22px; border:1px solid var(--rule); border-radius:10px; background:#fff;
-          padding:16px 22px 14px; font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
-          scroll-margin-top:20px; }
-  @media (max-width:720px){ .card{ margin:24px 0; padding:14px; } }
-  .card h3 { margin:0 0 4px; font-size:16.5px; font-weight:700; }
+  h2 { font-size:21px; margin:34px 0 10px; letter-spacing:-0.01em; color:#0b3d32; }
+  .card { margin:34px 0; padding:14px 0 18px; border:0; border-top:2px solid #0e5546; border-bottom:1px solid var(--rule); border-radius:0; background:transparent;
+          font-family:'Source Sans 3',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif; scroll-margin-top:20px; counter-increment:sim; }
+  @media (max-width:720px){ .card{ margin:28px 0; } }
+  body { counter-reset:sim; }
+  .card h3 { margin:0 0 4px; font-size:17px; font-weight:700; }
+  .card h3::before { content:'Simulation ' counter(sim); display:block; font-size:12px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:#1f8a70; margin-bottom:3px; }
   .cardsub { margin:0 0 12px; font-size:13.5px; color:var(--muted); line-height:1.45; }
   svg { width:100%; height:auto; display:block; }
   .btn { font-family:inherit; font-size:13.5px; font-weight:600; color:#fff; background:var(--accent);
          border:none; border-radius:6px; padding:8px 14px; cursor:pointer; }
-  .btn:hover { background:#16406f; }
+  .btn:hover { background:#093d32; }
   .controls { display:flex; gap:20px; align-items:flex-end; flex-wrap:wrap; margin-bottom:10px; }
   .ctl label { display:block; font-size:12.5px; color:var(--muted); margin-bottom:3px; }
   .ctl input[type=range] { width:160px; accent-color:var(--accent); }
   .ctl .val { font-weight:700; color:var(--ink); }
+  .ctl select { font-family:inherit; font-size:13.5px; font-weight:700; color:var(--ink);
+                background:#fff; border:1px solid var(--rule); border-radius:6px; padding:5px 8px; }
   .readout { margin-top:10px; padding-top:11px; border-top:1px solid var(--rule); font-size:14.5px; line-height:1.55; }
   table.t { width:100%; border-collapse:collapse; font-size:14.5px; }
   table.t th { text-align:left; font-size:12px; color:var(--muted); text-transform:uppercase;
@@ -44,99 +50,173 @@
   .split { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
   .split table.t { flex:1 1 250px; }
   .split svg { flex:1 1 250px; max-width:320px; }
-  table.t tr.on td { background:#f2f6fb; }
+  table.t tr.on td { background:#eef6f3; }
   table.t tr.on td:first-child { color:var(--accent); }
   .footnote { margin-top:34px; padding-top:14px; border-top:1px solid var(--rule);
               font-size:13px; color:var(--muted); line-height:1.5; }
+  .footnote a { color:var(--accent); }
+  sup a { color:var(--accent); text-decoration:none; font-weight:700; padding:0 1px; }
+  sup a:hover { text-decoration:underline; }
+  .heatwrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .heathint { display:none; font-size:12px; color:var(--muted); font-style:italic; margin:0 0 6px; }
+  @media (max-width:640px){ .heathint{ display:block; } }
+  table.heat { width:100%; border-collapse:collapse; font-size:14px; font-family:'Source Sans 3',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif; }
+  table.heat caption { display:none; }
+  table.heat th { text-align:center; font-size:11.5px; color:var(--muted); text-transform:uppercase;
+                  letter-spacing:.03em; padding:6px 4px; font-weight:600; white-space:nowrap; }
+  table.heat th:first-child, table.heat td:first-child { text-align:right; padding-right:10px; }
+  table.heat td { text-align:center; padding:8px 4px; font-weight:700; color:#141a18; white-space:nowrap; }
+  table.heat td:first-child { font-weight:600; color:var(--ink); background:transparent !important; }
+  table.heat tbody tr:first-child td { border-top:1px solid var(--rule); }
+  .wgrid { display:grid; grid-template-columns:auto 1fr; gap:14px 22px; margin:6px 0 14px; }
+  @media (max-width:600px){ .wgrid{ grid-template-columns:1fr; } }
+  .wgrid .ctl input[type=range] { width:100%; }
+  .wgrid .ctl select { width:100%; }
+  .hint { font-size:12px; color:var(--muted); margin-top:3px; }
+  .seg { display:inline-flex; border:1px solid var(--accent); border-radius:6px; overflow:hidden; }
+  .seg button { font-family:inherit; font-size:14px; font-weight:600; padding:5px 12px; border:0; background:#fff; color:var(--accent); cursor:pointer; }
+  .seg button + button { border-left:1px solid var(--accent); }
+  .seg button.on { background:var(--accent); color:#fff; }
+  .answer { border-left:3px solid #0e5546; padding:4px 0 4px 16px; margin:10px 0 6px; font-size:15px; line-height:1.55; }
+  .answer .big { display:block; font-size:30px; font-weight:800; color:var(--alert); line-height:1.15; margin:2px 0; }
+  .panel { border-top:1px solid var(--rule); padding-top:12px; margin-top:6px; }
+  .checkin { background:#f5f8f7; border:1px solid var(--rule); border-radius:8px; padding:10px 14px; margin:0 0 12px; }
+  .checkin label { display:block; font-size:15px; font-weight:700; margin-bottom:4px; }
+  .checkin label .val { color:var(--accent); }
+  .checkin input[type=range] { width:100%; accent-color:var(--accent); }
+  .ptitle { font-size:13.5px; font-weight:700; margin-bottom:4px; }
+  .stripfoot { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; font-size:14.5px; margin:4px 0 10px; }
+  .pm { color:var(--accent); font-weight:600; border-bottom:1px solid #9fcbbd; white-space:nowrap; }
+  article::before { content:''; display:block; height:6px; margin:-44px -20px 38px; background:linear-gradient(90deg,#062a22,#0e5546 45%,#1f8a70); }
 </style>
 </head>
 <body>
 <article>
 
-<h1>Did Your Retention Rate Actually Improve or Decline This Year? You May Not Be Able to&nbsp;Tell.</h1>
-<p class="subtitle">Statistics show that much of what moves the number each year is neither effort nor strategy, but a roll of the dice.</p>
-<div class="byline">By Steven Sherrin, PhD (Wentworth Institute of Technology)</div>
+<h1>Your Retention Rate Dropped. Or Did It?</h1>
+<p class="subtitle">Why a single year can’t answer that question – and what three simulations show about how long it actually takes to know your retention rates are changing.</p>
+<div class="byline">By Steven Sherrin, Ph.D. (Wentworth Institute of Technology)</div>
 
-<p>Retention rates are make-or-break numbers for most schools. A two-point gain is a great year; a two-point loss can mean a hiring freeze or budget cuts. It&rsquo;s understandable that college leaders anxiously await each year&rsquo;s retention figures and take them seriously.</p>
+<p>Retention rates are make-or-break numbers for most schools. A two-point gain is a great year; a two-point loss can mean a hiring freeze or budget cuts. So it’s understandable that leaders want an answer to the question “Are we improving our retention rates?” – and want it quickly.</p>
 
-<p>Yet, there is one fact many retention discussions fail to consider: a lot of what changes your retention rate from one year to the next may have nothing to do with your effort or your strategy. Rather, it can be luck; essentially, a roll of the dice.</p>
+<p>The trouble is that a single year’s number often can’t give them one.</p>
 
-<p>Institutions may not be particularly thrilled to welcome this statistical reality; institutional decision-making, budgets, and reputations often hinge on the number. However, what I present below will demonstrate how untrustworthy yearly retention rates can be; and, how real changes in retention are often too small or too slow to reliably appear in a single year.</p>
+<p>What I hope to convince you of is that retention rates often do not accurately reflect your institution’s time, effort, and resources each year. A lot of what changes your most recent retention rate may have nothing to do with that – but rather, with a random roll of the dice.</p>
 
-<h2>First: Randomness Is More Important than You Think</h2>
+<h2>Randomness Is More Important than You Think</h2>
 
-<p>A retention rate is measured on a finite group of people, and a finite group never lands on exactly the same number twice, just as 1,000 flips of the same coin will not give you 500 heads every time. Even a college that never changes &ndash; same programs, same kind of students, the same true odds that any one of them comes back &ndash; will post a different retention rate from year to year.</p>
+<p>A college with the same “true” retention rate – its actual ability to retain students – will still see a different retention rate from year to year due to random chance. While many of us know this on a rational level, it’s easy to underestimate, intuitively, how much chance alone can move the number.</p>
 
-<p>Topics like random variation and margin of error are likely familiar to many readers who encounter institutional data like these. However, what is less often noticed is just how much it affects year-to-year change.</p>
-
-<p>Below is a quick experiment to see it. Imagine one college whose true retention rate is fixed at, say, 78 percent and never moves; the only thing that changes from year to year is the luck of the draw. Now simulate that one year over again, 20 times. Try it yourself:</p>
+<p>Below is a quick experiment to see it. Imagine one college whose true retention rate is fixed at 78 percent and never moves; the only thing that changes from year to year is the luck of the draw. Now simulate that one year over again, 20 times. Try it yourself:</p>
 
 <div class="card" id="sim-random-year">
   <h3>One year, twenty times</h3>
-  <p class="cardsub">The true rate is exactly 78% every single time. Each dot is a reported rate for the identical year.</p>
+  <p class="cardsub">The true rate is exactly <span id="bpTxt">78%</span> every single time. Each dot is a reported rate for the identical year.</p>
   <div class="controls">
     <div class="ctl">
       <label>Entering class: <span class="val" id="bnVal">1,000</span></label>
       <input type="range" id="bnSlider" min="150" max="5000" step="50" value="1000">
     </div>
-    <div class="ctl"><button class="btn" id="reroll2">Roll the year 20 more times</button></div>
+    <div class="ctl">
+      <label>True retention rate: <span class="val" id="bpVal">78%</span></label>
+      <input type="range" id="bpSlider" min="50" max="95" step="1" value="78">
+    </div>
+    <div class="ctl"><button class="btn" id="reroll2">Roll again</button></div>
   </div>
   <svg id="beeChart" viewBox="0 0 640 130" role="img" aria-label="Twenty reported retention rates for one identical year"></svg>
   <div class="readout" id="beeOut"></div>
 </div>
 
-<p>Note that the spread of possible outcomes is often large. With an entering student class of 1,000, 20 rolls of the same year regularly vary four to six points &ndash; with nothing &ldquo;real&rdquo; ever changing. An ordinary two-point retention rate swing &ndash; the kind that could trigger emergency meetings or task forces &ndash; sits comfortably inside that range.</p>
+<p>Now, consider the question: which one of the 20 dots is the “true” retention rate? It isn’t possible to point to it on the chart, because the truth is not any single dot. It is the vertical dotted line: the yearly average over the long run. No institution ever actually gets to observe it. In reality, this year’s retention rate could have been any one of those 20 dots. Yet an institution only gets to report one of them, and that one number becomes the “true” retention rate.</p>
 
-<p>Now, let&rsquo;s ask a related question: <em>what is your true retention rate?</em> Try to point to it on the chart. You can&rsquo;t, because it is not any single dot. Yet, this is exactly what you are asked to assume when you look at this year&rsquo;s reported retention rate.</p>
+<p>With an entering class of 1,000, 20 “rolls” of the same year typically vary four to six points, with nothing real ever changing. An ordinary two-point swing up or down, the kind that could trigger emergency meetings or task forces, sits comfortably inside that range.</p>
 
-<p>Your institution&rsquo;s statistical reality is that this year&rsquo;s retention rate could have been any one of those 20 dots on the chart. The yearly roll of the dice gave you either a lucky or unlucky draw. And that draw can have quite significant implications for your institution.</p>
+<h2>Real Change Is Small</h2>
 
-<h2>Second: Real Change Is Often Slow, Small, and Difficult to See</h2>
+<p>Research shows that genuine improvement or decline in retention usually comes in small amounts, often smaller than a single year of data can reliably detect.</p>
 
-<p>Research shows that genuine improvement (or decline) in retention usually arrives a) slowly, b) over several years, and c) in small amounts &ndash; often smaller than a single year of data can reliably detect.</p>
+<p>Consider COVID-19, a generational disaster that upended every campus in the country. For most schools, it knocked retention down only a point or two. If a global pandemic is worth two points, the work of a new retention initiative is unlikely to be worth more in a similarly quick timeframe.</p>
 
-<p>Consider COVID-19, a generational disaster that upended every campus in the country. For most schools it knocked retention down only a point or two. If a global pandemic is worth two points, the work of a new retention initiative is hardly likely to be worth more.</p>
+<p>In practical terms: if your retention truly did improve or decline in a real but small way (as is common for most schools) there is a good chance you will not see it – at least, not immediately. Instead, your real retention gain can hide inside the noise for years. And the reverse happens just as easily, with an ordinary year of luck presenting itself as progress or loss that was never there.</p>
 
-<p>In practical terms: if your retention truly did improve or decline in a real but small way, as is common for most schools, there is a good chance you will not see it in a single year. In actuality, a real retention gain can hide inside the noise for years. And the reverse happens just as easily, with an ordinary year of luck presenting itself as progress or loss that was never there.</p>
-
-<p>The simulation below follows a college whose true retention rate really is rising, a full percentage point a year, and shows what its reported number does anyway.</p>
+<p>The simulation below follows a college whose true retention rate really did rise one full percentage point this year, and shows how likely an up or down year is in that situation.</p>
 
 <div class="card" id="sim-improving-college">
-  <h3>A college that is truly improving one point per year</h3>
-  <p class="cardsub">Its true rate really is climbing&mdash;a full percentage point a year, from pure coin-flip dynamics alone. Move the slider to your class size; the simulation rolls 20 one-year changes at that improving college, each dot the change it actually reported.</p>
+  <h3>One real improvement, twenty times</h3>
+  <p class="cardsub">This college&rsquo;s true retention rate really did rise this year &ndash; by exactly the amount you set, from a starting point of 78%. The simulation rolls that same one-year change 20 times; each dot is the change the college would actually have reported.</p>
   <div class="controls">
     <div class="ctl">
       <label>Entering class: <span class="val" id="impVal">1,000</span></label>
       <input type="range" id="impSlider" min="150" max="5000" step="50" value="1000">
     </div>
-    <div class="ctl"><button class="btn" id="reroll3">Roll twenty more years</button></div>
+    <div class="ctl">
+      <label>Size of the real improvement: <span class="val" id="impGVal">+1 point</span></label>
+      <input type="range" id="impGain" min="0.5" max="5" step="0.5" value="1">
+    </div>
+    <div class="ctl"><button class="btn" id="reroll3">Roll again</button></div>
   </div>
   <div class="split">
-    <table class="t" id="impTable">
-      <tr><th>Entering class</th><th>Chance of a down year</th></tr>
-      <tr data-lo="0" data-hi="750"><td>500</td><td>34%</td></tr>
-      <tr data-lo="750" data-hi="1500"><td>1,000</td><td>28%</td></tr>
-      <tr data-lo="1500" data-hi="3000"><td>2,000</td><td>22%</td></tr>
-      <tr data-lo="3000" data-hi="99999"><td>4,000</td><td>13%</td></tr>
-    </table>
-    <svg id="impChart" viewBox="0 0 300 220" role="img" aria-label="Twenty simulated year-over-year changes for a college that is truly improving one point per year"></svg>
+    <table class="t" id="impTable"></table>
+    <svg id="impChart" viewBox="0 0 300 220" role="img" aria-label="Twenty simulated one-year changes for a college whose retention rate truly improved"></svg>
   </div>
   <div class="readout" id="impOut"></div>
 </div>
 
-<p>In this case, ask yourself: how do we know if we are truly improving? Run it a few times and the pattern is clear: we don&rsquo;t know from just one year. A college that improves one percentage point a year&mdash;a meaningful feat&mdash;still posts losing years anyway. And this doesn&rsquo;t just happen at small schools, either, but ones with thousands of students (though to a lesser extent).</p>
+<p>In this case, ask yourself: how does a school in this scenario know if it is truly improving? Run it a few times and the pattern is clear: real changes do not always produce positive results. In this particular case, a school with 1,000 entering students that truly improved retention by one percentage point, a small but meaningful feat, did not always see that improvement; in fact, posting 6 down years out of 20 scenarios.</p>
 
-<h2>Taking This to Your Leaders</h2>
+<h2>Small Changes Take Years to Trust</h2>
 
-<p>This article argues that a single year&rsquo;s retention rate often carries less signal than the weight we tend to place on it. It can move on its own when nothing has changed, and it can fail to move when something real is happening.</p>
+<p>So if one year can’t be trusted, how many years do you need instead? We can test that through simulations, as well. The bottom line is that real changes can take several years, or more, to truly be seen.</p>
 
-<p>The consequence is that a single year can easily point your institution&rsquo;s leaders the wrong way. A genuinely improving college could have a statistically unlucky year &ndash; for instance, its retention rate drops a couple points &ndash; and its leaders may cut the advising program that was, in fact, working. On the other hand, a flat or declining college could get a lucky statistical draw &ndash; &ldquo;achieving&rdquo; a two-point gain &ndash; and give credit to a strategy that never actually had a positive impact.</p>
+<p>The simulation below starts with an institution whose initiative worked: its “true” retention rate improved by anywhere from 1 to 5 percentage points (you can set how much in the simulator). However, the institution doesn’t know the “true” impact of the initiative; that would be impossible to know. Therefore, it judges the initiative’s success by what it can see: the actual observed retention rate changes each year.</p>
 
-<p>How do we talk to university leaders about this? Before presenting them these findings, it may be important to first appreciate that this may not be especially welcome news.</p>
+<p>In the simulation, you can decide how much of an improvement the institution needs as evidence to declare the initiative a success. The question is: how many years of data does it take for a school to reliably see that improvement, and how often does it see too little improvement (or none at all) and conclude that the initiative failed?</p>
 
-<p>Leaders are hired to move the numbers, so the suggestion that institutions are not fully in control of the numbers can sound like a threat to their abilities. There may also be other departments who are more willing to offer certainty in their data perspectives, and who provide narratives delivered with total confidence.</p>
+<div class="card" id="sim-wait">
+  <h3>Will the numbers catch a gain that really happened?</h3>
+  <p class="cardsub">Every simulated college here truly improved by the amount you choose. The only thing standing between the college and the truth is ordinary luck: which students happen to come back each year.</p>
 
-<p>Our job may be to persuade leaders that responding to statistical uncertainty with patience and restraint is a sign of strong leadership &ndash; not a &ldquo;failure to act&rdquo;. A strong leader can hold a steady hand through the ups and downs of a yearly retention rate that doesn&rsquo;t always reflect how an institution is truly faring.</p>
+  <div class="wgrid">
+    <div class="ctl">
+      <label>True gain (points)</label>
+      <div class="seg" id="wGain" role="group" aria-label="True gain in points">
+        <button data-v="1">+1</button><button data-v="2" class="on">+2</button><button data-v="3">+3</button><button data-v="4">+4</button><button data-v="5">+5</button>
+      </div>
+    </div>
+    <div class="ctl">
+      <label for="wThr">Counts as seeing it</label>
+      <select id="wThr">
+        <option value="0.75">At least &frac34; of the true gain</option>
+        <option value="0.5" selected>At least half of it</option>
+        <option value="0.25">At least a quarter of it</option>
+        <option value="0">Any gain at all</option>
+      </select>
+      <div class="hint" id="wThrHint"></div>
+    </div>
+    <div class="ctl" style="grid-column:1 / -1">
+      <label>Entering class: <span class="val" id="wVal">1,000</span></label>
+      <input type="range" id="wSlider" min="250" max="5000" step="50" value="1000">
+    </div>
+  </div>
+
+  <div class="answer" id="wAnswer"></div>
+</div>
+
+<p>Take the example shown above: a college with an entering class of 1,000 whose true retention rate rose 2 points. It is hoping for a two-percentage-point increase, but it would settle for an improvement of half the true effect (one percentage point) as strong enough proof of success to keep funding for the initiative.</p>
+
+<p>How long would the school need to wait to reliably see that improvement (9 times out of 10)? The simulation’s answer: 6 years. If the school waits less than 6 years, there’s a significant chance it will prematurely judge the initiative a failure, even though it worked. Even if they wait 6 years, there’s still about a 1 in 10 chance the school won’t see the gain it’s looking for, of at least 1 percentage point.</p>
+
+<h2>Communicating to Your Leaders</h2>
+
+<p>This article argues that a single year’s retention rate often carries less signal than the weight we tend to place on it. It can move on its own when nothing has changed. It can also fail to move when something real is happening. Real change rarely shows up in a single year, and it can take many years before you can be confident that what you’re seeing is real.</p>
+
+<p>The main thing I wish to say to leaders is that there is a cost to impatience when interpreting retention rates. A genuinely improving school could have a statistically unlucky year – for instance, its retention rate drops a couple points – and its leaders may cut the advising program that was, in fact, working. On the other hand, a declining college could get a lucky statistical draw – “achieving” a two-point gain – and miss negative trends on campus that are not yet visible in the data.</p>
+
+<p>It’s important for institutional researchers to remember that even though a more cautious approach to interpreting retention rates is an improvement (in a purely statistical sense), it is also true that it can make leaders’ decisions more challenging. To leaders, being told that results may take years to show up, and may never be fully certain, could be interpreted as saying that retention can’t be reliably changed or that they can’t succeed on the timeline they’ve promised. There may be others on campus willing to offer simpler stories, that they need to reckon with, too.</p>
+
+<p>What can institutional researchers do to help leaders make the best decisions? A few things can help. First, report multi-year averages of retention rates so that leaders don’t overinterpret year-to-year changes. Second, researchers can set reasonable expectations, ideally before an initiative launches, for how many years it may take to observe a change. Third, when a retention change does appear, researchers can look for evidence beneath it: for example, whether the students an initiative served actually did better than similar students who weren’t served (though, of course, the same uncertainty issues still apply).</p>
+
+<p>So when this year’s retention rate drops and someone asks whether the initiative failed, the most honest answer may be: “It’s too early to tell – and here’s how long it will take to know.”</p>
 
 </article>
 
@@ -148,12 +228,13 @@
   /* ----- one year, twenty times (beeswarm) ----- */
   (function(){
     var nS=document.getElementById('bnSlider'), nV=document.getElementById('bnVal');
+    var pS=document.getElementById('bpSlider'), pV=document.getElementById('bpVal'), pT=document.getElementById('bpTxt');
     var chart=document.getElementById('beeChart'), out=document.getElementById('beeOut');
-    var P=0.78;
     function render(){
-      var n=+nS.value; nV.textContent=n.toLocaleString();
+      var n=+nS.value, T=+pS.value, P=T/100; nV.textContent=n.toLocaleString(); pV.textContent=T+'%'; pT.textContent=T+'%';
       var vals=[]; for(var k=0;k<20;k++) vals.push(roll(n,P));
-      var lo=Math.min(72,Math.min.apply(null,vals)-0.7), hi=Math.max(84,Math.max.apply(null,vals)+0.7);
+      var lo=Math.min(T-6,Math.min.apply(null,vals)-0.7), hi=Math.max(T+6,Math.max.apply(null,vals)+0.7);
+      if(hi>100){ hi=100; lo=Math.min(lo,88); }   // a retention rate can't exceed 100%
       var W=640,mL=20,mR=20,axY=82;
       function X(v){ return mL+(W-mL-mR)*(v-lo)/(hi-lo); }
       var s='';
@@ -162,34 +243,44 @@
         s+='<line x1="'+X(g)+'" x2="'+X(g)+'" y1="'+(axY-4)+'" y2="'+(axY+4)+'" stroke="#c6ccd6"/>';
         s+='<text x="'+X(g)+'" y="'+(axY+21)+'" text-anchor="middle" font-size="12" fill="#5b6270">'+g+'%</text>';
       }
-      s+='<line x1="'+X(78)+'" x2="'+X(78)+'" y1="14" y2="'+(axY+6)+'" stroke="#5b6270" stroke-width="1.5" stroke-dasharray="6,5"/>';
-      s+='<text x="'+X(78)+'" y="10" text-anchor="middle" font-size="11.5" font-style="italic" fill="#5b6270">the truth: 78.0</text>';
+      s+='<line x1="'+X(T)+'" x2="'+X(T)+'" y1="14" y2="'+(axY+6)+'" stroke="#5b6270" stroke-width="1.5" stroke-dasharray="6,5"/>';
+      s+='<text x="'+X(T)+'" y="10" text-anchor="middle" font-size="11.5" font-style="italic" fill="#5b6270">the truth: '+T.toFixed(1)+'</text>';
       for(var i=0;i<vals.length;i++){ var y=axY-13-(i%5)*11;
-        s+='<circle cx="'+X(vals[i]).toFixed(1)+'" cy="'+y+'" r="5" fill="#1d4e89" opacity="0.75"/>'; }
+        s+='<circle cx="'+X(vals[i]).toFixed(1)+'" cy="'+y+'" r="5" fill="#0e5546" opacity="0.75"/>'; }
       chart.innerHTML=s;
       var mn=Math.min.apply(null,vals), mx=Math.max.apply(null,vals);
       out.innerHTML='Twenty rolls of the identical year at a class of <b>'+n.toLocaleString()+
         '</b>: rates from <b>'+mn.toFixed(1)+'%</b> to <b>'+mx.toFixed(1)+'%</b>, a spread of <b>'+
-        (mx-mn).toFixed(1)+' points</b> - with nothing real changing.';
+        (mx-mn).toFixed(1)+' points</b> &ndash; with nothing real changing.';
     }
-    nS.addEventListener('input',render);
+    nS.addEventListener('input',render); pS.addEventListener('input',render);
     document.getElementById('reroll2').addEventListener('click',render); render();
   })();
 
-  /* ----- a college truly improving 1 pt/year ----- */
+  /* ----- one real improvement, twenty times ----- */
   (function(){
     var nS=document.getElementById('impSlider'), nV=document.getElementById('impVal');
-    var chart=document.getElementById('impChart'), out=document.getElementById('impOut');
-    var rows=document.getElementById('impTable').getElementsByTagName('tr');
+    var gS=document.getElementById('impGain'), gV=document.getElementById('impGVal');
+    var chart=document.getElementById('impChart'), out=document.getElementById('impOut'), table=document.getElementById('impTable');
+    var P0=0.78, SIZES=[500,1000,2000,4000];
+    function ptsLabel(d){ return '+'+d+(d===1?' point':' points'); }
+    // Exact chance that the reported rate comes back LOWER than last year's (binomial, both years)
+    function pmf(n,p){ var a=new Float64Array(n+1), lq=Math.log(1-p), lp=Math.log(p), l=n*lq; a[0]=Math.exp(l);
+      for(var k=1;k<=n;k++){ l+=Math.log((n-k+1)/k)+lp-lq; a[k]=Math.exp(l); } return a; }
+    function chanceDown(n,d){ var a=pmf(n,P0), b=pmf(n,P0+d/100), cum=0, pr=0;
+      for(var k=0;k<=n;k++){ pr+=a[k]*cum; cum+=b[k]; } return pr; }   // P(after < before)
+    var cache={};
     function render(){
-      var n=+nS.value; nV.textContent=n.toLocaleString();
-      // highlight matching table row
-      for(var r=1;r<rows.length;r++){ var lo=+rows[r].getAttribute('data-lo'), hi=+rows[r].getAttribute('data-hi');
-        rows[r].className = (n>=lo && n<hi) ? 'on' : ''; }
-      // 20 observed one-year changes, PURE BINOMIAL: true rate 78% rising to 79% (a real +1)
-      var vals=[]; for(var k=0;k<20;k++) vals.push(roll(n,0.79)-roll(n,0.78));
+      var n=+nS.value, d=+gS.value; nV.textContent=n.toLocaleString(); gV.textContent=ptsLabel(d);
+      var near=SIZES[0]; for(var i=0;i<SIZES.length;i++) if(Math.abs(SIZES[i]-n)<Math.abs(near-n)) near=SIZES[i];
+      var t='<tr><th>Entering class</th><th>Chance of a down year</th></tr>';
+      for(var i=0;i<SIZES.length;i++){ var key=SIZES[i]+'_'+d; if(!(key in cache)) cache[key]=chanceDown(SIZES[i],d);
+        t+='<tr'+(SIZES[i]===near?' class="on"':'')+'><td>'+SIZES[i].toLocaleString()+'</td><td>'+(cache[key]<0.005?'&lt;1':Math.round(cache[key]*100))+'%</td></tr>'; }
+      table.innerHTML=t;
+      // 20 reported one-year changes, pure binomial: true rate 78% rising to 78% + d
+      var vals=[]; for(var k=0;k<20;k++) vals.push(roll(n,P0+d/100)-roll(n,P0));
       var W=300,H=220,mT=14,mB=22,mL=34,mR=10, ih=H-mT-mB;
-      var lo=Math.min(-8,Math.min.apply(null,vals)-1), hi=Math.max(8,Math.max.apply(null,vals)+1);
+      var lo=Math.min(-8,Math.min.apply(null,vals)-1), hi=Math.max(8,d+3,Math.max.apply(null,vals)+1);
       function Y(v){ return mT+ih*(1-(v-lo)/(hi-lo)); }
       var s='';
       for(var g=Math.ceil(lo/2)*2; g<=hi; g+=2){
@@ -197,23 +288,71 @@
         s+='<text x="'+(mL-6)+'" y="'+(Y(g)+4).toFixed(1)+'" text-anchor="end" font-size="10.5" fill="#5b6270">'+(g>0?'+':'')+g+'</text>';
       }
       s+='<line x1="'+mL+'" x2="'+(W-mR)+'" y1="'+Y(0).toFixed(1)+'" y2="'+Y(0).toFixed(1)+'" stroke="#9aa2ad" stroke-width="1.3"/>';
-      s+='<line x1="'+mL+'" x2="'+(W-mR)+'" y1="'+Y(1).toFixed(1)+'" y2="'+Y(1).toFixed(1)+'" stroke="#1e7a4f" stroke-width="1.3" stroke-dasharray="5,4"/>';
-      s+='<text x="'+(W-mR)+'" y="'+(Y(1)-4).toFixed(1)+'" text-anchor="end" font-size="10" font-style="italic" fill="#1e7a4f">true gain +1</text>';
-      // beeswarm: bucket by rounded value, offset horizontally
+      s+='<line x1="'+mL+'" x2="'+(W-mR)+'" y1="'+Y(d).toFixed(1)+'" y2="'+Y(d).toFixed(1)+'" stroke="#1f8a70" stroke-width="1.3" stroke-dasharray="5,4"/>';
+      s+='<text x="'+(W-mR)+'" y="'+(Y(d)-4).toFixed(1)+'" text-anchor="end" font-size="10" font-style="italic" fill="#1f8a70">true gain +'+d+'</text>';
       var cx=(mL+W-mR)/2, counts={}, down=0;
       for(var i=0;i<vals.length;i++){
-        var key=Math.round(vals[i]);
-        counts[key]=(counts[key]||0)+1;
-        var off=((counts[key]-1)%2? 1:-1)*Math.ceil((counts[key]-1)/2)*11;
-        var col=vals[i]<0?'#c0392b':'#1e7a4f';
-        if(vals[i]<0) down++;
+        var key2=Math.round(vals[i]); counts[key2]=(counts[key2]||0)+1;
+        var off=((counts[key2]-1)%2? 1:-1)*Math.ceil((counts[key2]-1)/2)*11;
+        var col=vals[i]<0?'#c0392b':'#1f8a70'; if(vals[i]<0) down++;
         s+='<circle cx="'+(cx+off).toFixed(1)+'" cy="'+Y(vals[i]).toFixed(1)+'" r="4.5" fill="'+col+'" opacity="0.82"/>';
       }
       chart.innerHTML=s;
-      out.innerHTML='This college truly improved every one of these twenty years. Yet <b>'+down+' of 20</b> came back as a <span style="color:#c0392b;font-weight:700">down year</span>. A leader judging the work by the annual number would have called it a failure '+down+' times - while it was succeeding all twenty.';
+      out.innerHTML='This college&rsquo;s improvement of <b>'+ptsLabel(d)+'</b> was real in every one of these twenty rolls. Yet <b>'+down+' of 20</b> came back as a <span style="color:#c0392b;font-weight:700">down year</span>. A leader judging the work by this year&rsquo;s number would have called it a failure '+down+(down===1?' time':' times')+' &ndash; even though the improvement was real every time.';
     }
-    nS.addEventListener('input',render);
+    nS.addEventListener('input',render); gS.addEventListener('input',render);
     document.getElementById('reroll3').addEventListener('click',render); render();
+  })();
+
+  /* ----- how long until a real gain shows up (simulation) ----- */
+  (function(){
+    var P0=0.78, Z90=1.2815516;
+    var gainBox=document.getElementById('wGain'), thrS=document.getElementById('wThr'), nS=document.getElementById('wSlider');
+    var gain=2;
+    var rnd=Math.random;
+    function seeded(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+    function gauss(){ var u=1-rnd(), v=rnd(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+    // One simulated college: Y years at 78% before the improvement, Y years at 78%+gain after, n students a year.
+    // Each period's average is drawn as one binomial over n*Y students (normal approximation).
+    function rate(n,Y,p){ return p+Math.sqrt(p*(1-p)/(n*Y))*gauss(); }
+    function measured(n,Y,d){ return 100*(rate(n,Y,P0+d/100)-rate(n,Y,P0)); }
+    function share(n,Y,d,bar,R){ var h=0; for(var r=0;r<R;r++) if(measured(n,Y,d)>=bar) h++; return h/R; }
+    // Starting guess for the search below (closed-form approximation of the simulation's answer)
+    function need(n,d,f){ var p1=P0+d/100, s=100*Math.sqrt((P0*(1-P0)+p1*(1-p1))/n); return Math.max(1,Math.ceil(Math.pow(Z90*s/(d*(1-f)),2))); }
+    function yrs(y){ return y.toLocaleString()+(y===1?' year':' years'); }
+    function pts(x){ var v=(Math.round(x*100)/100); return v+(v===1?' point':' points'); }
+    function seeText(f,bar){
+      if(f===0) return 'any gain at all';
+      var part = f===0.75?'three-quarters':f===0.5?'half':'a quarter';
+      return 'at least '+part+' of that gain ('+pts(bar)+' or more)'; }
+    function pm(t){ return '<span class="pm">'+t+'</span>'; }
+    var cache={};
+    function yearsNeeded(n,d,f){
+      var key=n+'_'+d+'_'+f; if(key in cache) return cache[key];
+      var bar=d*f, guess=need(n,d,f), N=null; rnd=seeded(12345);
+      for(var c=Math.max(1,guess-3); c<=guess+6; c++){ if(share(n,c,d,bar,100000)>=0.9){ N=c; break; } }
+      rnd=Math.random; if(N===null) N=guess;
+      return (cache[key]=N); }
+
+    function render(){
+      var n=+nS.value, f=+thrS.value, d=gain, bar=d*f;
+      document.getElementById('wVal').textContent=n.toLocaleString();
+      document.getElementById('wThrHint').innerHTML = f===0 ? 'Any measured increase counts' : 'Measured gain of <b>'+pts(bar)+' or more</b> counts';
+      // Simulate 100,000 colleges at each candidate number of years (starting near the closed-form estimate)
+      // and take the fewest years at which at least 9 in 10 see the gain.
+      // (a fixed random seed keeps this headline number the same each time the page loads)
+      var N=yearsNeeded(n,d,f);
+      document.getElementById('wAnswer').innerHTML='Based on 100,000 simulated colleges: for a college whose retention truly rose '+pm(pts(d))+
+        ', with an entering class of '+pm(n.toLocaleString())+', to see '+pm(seeText(f,bar))+' 9 times out of 10, you would need about '+
+        '<span class="big">'+yrs(N)+' after the improvement.</span>';
+    }
+    var btns=gainBox.getElementsByTagName('button');
+    for(var i=0;i<btns.length;i++) btns[i].addEventListener('click',function(){
+      gain=+this.getAttribute('data-v'); for(var k=0;k<btns.length;k++) btns[k].className=(btns[k]===this?'on':''); render(); });
+    thrS.addEventListener('change',render);
+    nS.addEventListener('input',function(){ document.getElementById('wVal').textContent=(+nS.value).toLocaleString(); });
+    nS.addEventListener('change',render);
+    render();
   })();
 })();
 </script>
